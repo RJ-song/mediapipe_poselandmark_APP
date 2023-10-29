@@ -1,18 +1,3 @@
-/*
- * Copyright 2023 The TensorFlow Authors. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.example.test.fragment
 
 import android.annotation.SuppressLint
@@ -42,6 +27,7 @@ import com.example.test.databinding.FragmentCameraBinding
 import com.example.test.fragment.PermissionsFragment
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
+import java.util.EventListener
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -68,11 +54,13 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
     private var poseLandmarkerResult: PoseLandmarkerResult? = null
     /** Blocking ML operations are performed using this executor */
     private lateinit var backgroundExecutor: ExecutorService
-
+    private lateinit var listener: (result: PoseLandmarkerResult) -> Unit
     fun getPoseLandmarkerResult(): PoseLandmarkerResult? {
         return poseLandmarkerResult
     }
-
+    fun setListener(listener: (result: PoseLandmarkerResult) -> Unit) {
+        this.listener = listener
+    }
     override fun onResume() {
         super.onResume()
         // Make sure that all permissions are still present, since the
@@ -398,7 +386,7 @@ class CameraFragment : Fragment(), PoseLandmarkerHelper.LandmarkerListener {
                     resultBundle.inputImageWidth,
                     RunningMode.LIVE_STREAM
                 )
-
+                this.listener.invoke(resultBundle.results.first())
                 // Force a redraw
                 fragmentCameraBinding.overlay.invalidate()
             }

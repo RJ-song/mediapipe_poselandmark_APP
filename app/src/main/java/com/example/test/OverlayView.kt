@@ -113,6 +113,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) :
         invalidate()
     }
 
+    fun getPoseLandmarkerResult(): PoseLandmarkerResult? {
+        return results
+    }
     companion object {
         private const val LANDMARK_STROKE_WIDTH = 12F
     }
