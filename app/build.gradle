@@ -80,6 +80,6 @@ dependencies {
     // MediaPipe Library
     implementation 'com.google.mediapipe:tasks-vision:latest.release'
     implementation 'com.google.android.material:material:1.4.0'
-
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.7.0'
 
 }

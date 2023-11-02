@@ -14,17 +14,25 @@
     ~ See the License for the specific language governing permissions and
     ~ limitations under the License.
 -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@android:color/transparent">
+
+    <FrameLayout
+        android:id="@+id/test_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="DuplicateIds" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
@@ -61,7 +69,6 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
 
-
         <FrameLayout
             android:id="@+id/camera_fragment_container"
             android:layout_width="match_parent"
@@ -70,4 +77,4 @@
 
 
     </RelativeLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

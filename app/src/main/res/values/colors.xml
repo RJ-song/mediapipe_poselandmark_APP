@@ -29,7 +29,7 @@
     <color name="icActive">#FFFFFFFF</color>
     <color name="icFocused">#DDFFFFFF</color>
     <color name="icPressed">#AAFFFFFF</color>
-
+    <color name="Second_light">#E9AFA3</color>
     <!-- Add the missing color resources -->
     <color name="purple_500">#800080</color>
     <color name="purple_700">#4B0082</color>
